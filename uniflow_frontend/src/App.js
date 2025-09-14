@@ -11,7 +11,7 @@ function App() {
     <>
     <BrowserRouter>
       <Routes>
-        <Route path='/' element={<LoginPage/>}/>
+        <Route path='/' element={<DashBord/>}/>
         <Route path='/qr' element={<Qr/>}/>
       </Routes>
     
