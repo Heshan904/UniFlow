@@ -1,22 +1,37 @@
+import Login from "./components/auth/login";
+import Register from "./components/auth/register";
 
-import './App.css';
-import DashBord from './Pages/DashBord';
+import Header from "./components/header";
+import Home from "./components/home";
 
-import { BrowserRouter,Routes,Route } from 'react-router-dom';
-import Qr from './Pages/Qr';
-import LoginPage from './Pages/LoginPage';
+import { AuthProvider } from "./contexts/authContext";
+import { useRoutes } from "react-router-dom";
 
 function App() {
+  const routesArray = [
+    {
+      path: "*",
+      element: <Login />,
+    },
+    {
+      path: "/login",
+      element: <Login />,
+    },
+    {
+      path: "/register",
+      element: <Register />,
+    },
+    {
+      path: "/home",
+      element: <Home />,
+    },
+  ];
+  let routesElement = useRoutes(routesArray);
   return (
-    <>
-    <BrowserRouter>
-      <Routes>
-        <Route path='/' element={<DashBord/>}/>
-        <Route path='/qr' element={<Qr/>}/>
-      </Routes>
-    
-    </BrowserRouter>
-    </>
+    <AuthProvider>
+      <Header />
+      <div className="w-full h-screen flex flex-col">{routesElement}</div>
+    </AuthProvider>
   );
 }
 
